@@ -1,0 +1,8 @@
+
+./miteCA gencsr -r "C=CN,CN=SM2ROOTCA,O=LZ,OU=HAHA,ST=ZHON,commonName=testCA" -o CA
+
+
+./miteCA ca --new -c CA.csr --key CA.key --days 365 --dir /home/andy/GitHub/MY/mite_project/X509-Certificate-Tool/CADIR/
+
+
+
