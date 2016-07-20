@@ -137,14 +137,16 @@ int newca()
     }
 	//写入文件
     f = fopen((ca_dir + "/ca.crt").c_str(), "wb");
-    if (!PEM_write_X509_AUX(f, x)) {
+    //if (!PEM_write_X509_AUX(f, x)) {
+    if (!PEM_write_X509(f, x)) {
         err("Failed");
         return 8;
     }
 	fclose(f);
 
     f = fopen((ca_dir + "/ca/ca.crt").c_str(), "wb");
-    if (!PEM_write_X509_AUX(f, x)) {
+    //if (!PEM_write_X509_AUX(f, x)) {
+    if (!PEM_write_X509(f, x)) {
         err("Failed");
         //return 8;
     }
@@ -230,9 +232,11 @@ int casign()
     X509_set_pubkey(x, pk);
 	//扩展信息
     X509_EXTENSION *ex;
-    ex = X509V3_EXT_conf_nid(NULL, NULL, NID_basic_constraints, (char*)"critical,CA:TRUE");
+	/* 用户证书不要这个项目
+    ex = X509V3_EXT_conf_nid(NULL, NULL, NID_basic_constraints, (char*)"critical,CA:FALSE");
     X509_add_ext(x, ex, -1);
     X509_EXTENSION_free(ex);
+	*/
 
 	//测试的时候不填充密钥用法
 # if 0
@@ -254,7 +258,8 @@ int casign()
 
 	//写入文件暂时写死
     f = fopen((ca_dir + "/certs/" + cert_file).c_str(), "wb");
-    if (!PEM_write_X509_AUX(f, x)) {
+    //if (!PEM_write_X509_AUX(f, x)) {
+    if (!PEM_write_X509(f, x)) {
         err("Failed");
         return 8;
     }

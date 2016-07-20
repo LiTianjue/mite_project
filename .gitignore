@@ -32,3 +32,8 @@ Makefile*
 #QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+
+#for X509 CA Tool
+demoCA
+log.txt
+miteCA
