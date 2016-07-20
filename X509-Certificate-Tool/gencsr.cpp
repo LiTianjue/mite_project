@@ -122,7 +122,8 @@ int mkcsr()
     FILE *prv_f = fopen(prv_file.c_str(), "wb");
     
     PEM_write_X509_REQ(csr_f, x);
-    PEM_write_PrivateKey(prv_f, pk, EVP_aes_256_cbc(), 0, 0, 0, 0);
+    //PEM_write_PrivateKey(prv_f, pk, EVP_aes_256_cbc(), 0, 0, 0, 0);
+    PEM_write_PrivateKey(prv_f, pk, NULL, 0, 0, 0, 0);
     vb("Done");
     return 0;
 }
