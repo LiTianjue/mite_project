@@ -54,7 +54,8 @@ int mkcsr()
     vb("Generating key");
 	// ECC密钥对，未指定密钥对sm2 958
     //eckey = EC_KEY_new_by_curve_name(715);
-    eckey = EC_KEY_new_by_curve_name(958);
+    //eckey = EC_KEY_new_by_curve_name(958);
+    eckey = EC_KEY_new_by_curve_name(NID_sm2p256v1);
     if (!eckey) {
         err("Unsupported");
         return 4;
